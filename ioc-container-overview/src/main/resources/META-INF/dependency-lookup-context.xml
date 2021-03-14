@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="user" class="cn.yanpeipan.ioc.container.overview.domain.User" primary="true">
+        <property name="id" value="1"/>
+        <property name="name" value="yanpeipan"/>
+        <property name="city" value="BJ"/>
+        <property name="workCities" value="BJ,SD"/>
+        <property name="lifeCities">
+            <list>
+                <value>BJ</value>
+                <value>SD</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="superUser" class="cn.yanpeipan.ioc.container.overview.domain.SuperUser" parent="user">
+        <property name="address" value="BJ"/>
+    </bean>
+
+    <bean id="userFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+        <property name="targetBeanName" value="user"/>
+    </bean>
+</beans>
